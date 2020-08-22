@@ -11,5 +11,6 @@ def serve(port, service_name, timeout):
         if not discover(port + 1, service_name, 1) is None:
             time.sleep(0.15)
             send_broadcast(port, service_name)
+            
             time.sleep(0.15)
             send_broadcast(port, service_name)
