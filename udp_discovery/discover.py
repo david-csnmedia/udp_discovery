@@ -2,6 +2,8 @@ import os
 import socket
 import time
 
+from udp_discovery.broadcast import send_broadcast
+
 def discover(port, service_name, timeout=80):
     client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 
@@ -24,9 +26,13 @@ def discover(port, service_name, timeout=80):
                     return addr[0]
 
         except RuntimeError as runtime_error:
-            print(runtime_error)
+            pass
 
         except Exception as exception:
-            print(exception)
+            pass
 
     return None
+
+def discover_fast(port, service_name, timeout=80):
+    send_broadcast(port + 1, service_name)
+    return discover(port, service_name, timeout)
