@@ -21,9 +21,14 @@ def discover(port, service_name, timeout=80):
             packet = client.recvfrom(1024)
             if packet:
                 data, addr = packet
+                print("Service Broadcast: {name:s} from {addr:s}".format(
+                    addr=addr[0],
+                    name=str(data, "utf8")))
 
                 if data == bytes(service_name, "utf8"):
                     return addr[0]
+                else:
+                    print("Service Broadcast: {name:s}".format(name=str(data)))
 
         except RuntimeError as runtime_error:
             pass
@@ -34,5 +39,7 @@ def discover(port, service_name, timeout=80):
     return None
 
 def discover_fast(port, service_name, timeout=80):
+    send_broadcast(port + 1, service_name)
+    send_broadcast(port + 1, service_name)
     send_broadcast(port + 1, service_name)
     return discover(port, service_name, timeout)

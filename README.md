@@ -13,3 +13,18 @@ python -m udp_discovery broadcast <em>27000 service_name</em>
 <pre>
 python -m udp_discovery discover <em>27000 service_name</em>
 </pre>
+
+---
+
+## Serve Broadcasts
+
+<pre>
+python -m udp_discovery serve <em>27000 service_name</em>
+</pre>
+
+## Quick Discovery
+
+<pre>
+python -m udp_discovery discover_fast <em>27000 service_name</em>
+</pre>
+
